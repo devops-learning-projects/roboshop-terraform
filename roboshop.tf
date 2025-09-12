@@ -9,7 +9,7 @@ variable "instance_type" {
 }
 
 variable "instances" {
-  default = ["frontend", "catalogue"]
+  default = ["frontend", "catalogue", "cart", "user", "mongodb", "mysql", "rabbitmq", "redis", "payment", "shipping"]
 }
 
 resource "aws_instance" "frontend" {
