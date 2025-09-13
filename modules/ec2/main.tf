@@ -15,3 +15,12 @@ resource "aws_route53_record" "records" {
   ttl     = 30
   records = [aws_instance.instance.private_ip]
 }
+
+resource "null_resource" "ansible" {
+  provisioner "local-exec" {
+    command = <<ANSIBLE
+cd /home/ec2-user/roboshop-ansible
+make role_name=${var.name}
+ANSIBLE
+  }
+}
