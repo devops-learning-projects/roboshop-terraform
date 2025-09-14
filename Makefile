@@ -28,4 +28,4 @@ prod-destroy: prod-init
 
 tools-infra:
 	git pull
-	cd tools ; terraform init ; terraform apply
+	cd tools ; terraform init ; terraform apply -auto-approve
