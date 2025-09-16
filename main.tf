@@ -6,6 +6,7 @@ module "ec2" {
   name          = each.key
   env           = var.env
   zone_id       = var.zone_id
+  token         = var.token
 }
 
 
