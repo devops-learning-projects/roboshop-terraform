@@ -4,6 +4,10 @@ resource "aws_instance" "instance" {
   vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   subnet_id     = "subnet-0a6dbf7c9698842d3"
 
+  root_block_device {
+    volume_size = var.disk_size
+  }
+
   tags = {
     Name = local.tagName
   }
