@@ -1,6 +1,6 @@
 dev-init: ## Initialize dev environment
 	git pull
-	terraform init
+	terraform init -backend-config=./environments/dev/state.tfvars
 
 dev-plan: ## Plan changes for dev
 	terraform plan -var-file=./environments/dev/main.tfvars
@@ -14,7 +14,7 @@ dev-destroy: dev-init ## Destroy dev environment
 prod-init: ## Initialize prod environment
 	git pull
 	rm -rf .terraform/terraform.tfstate
-	terraform init -backend-config=./environments/dev/state.tfvars
+	terraform init -backend-config=./environments/prod/state.tfvars
 
 prod-plan: ## Plan changes for prod
 	terraform plan -var-file=./environments/prod/main.tfvars
