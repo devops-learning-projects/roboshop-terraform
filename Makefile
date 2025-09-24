@@ -1,5 +1,6 @@
 dev-init: ## Initialize dev environment
 	git pull
+	rm -rf .terraform/terraform.tfstate
 	terraform init -backend-config=./environments/dev/state.tfvars
 
 dev-plan: ## Plan changes for dev
