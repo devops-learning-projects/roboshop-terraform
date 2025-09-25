@@ -41,3 +41,4 @@ resource "null_resource" "ansible" {
     ]
   }
 }
+#vault
