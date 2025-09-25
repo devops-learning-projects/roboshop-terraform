@@ -29,4 +29,4 @@ prod-destroy: prod-init ## Destroy prod environment
 tools-infra: ## Apply tools infrastructure
 	git pull
 	rm -rf .terraform/terraform.tfstate
-	cd tools ; terraform init ; terraform destroy -auto-approve
+	cd tools ; terraform init ; terraform apply -auto-approve
