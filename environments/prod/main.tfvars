@@ -32,6 +32,6 @@ instances = {
 }
 
 env       = "prod"
-ami       = "ami-09c813fb71547fc4f"
+ami       = "ami-02cd238b02cf23cc1"
 zone_id   = "Z00952302MOEZ376FKNPS"
 zone_name = "maidevops.fun"
