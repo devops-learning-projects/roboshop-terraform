@@ -13,3 +13,5 @@ variable "tools" {
     }
   }
 }
+
+variable "token" {}
