@@ -115,9 +115,9 @@ resource "aws_eks_node_group" "example" {
   subnet_ids      = ["subnet-0a10be74295112b3e", "subnet-0ae77905116bf41c6"]
 # to demonstrate schedular we need multiple nodes. default: 1, 2, 1
   scaling_config {
-    desired_size = 3
+    desired_size = 1
     max_size     = 5
-    min_size     = 3
+    min_size     = 1
   }
 
   update_config {
