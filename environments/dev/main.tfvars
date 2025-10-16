@@ -66,5 +66,14 @@ zone_id   = "Z00952302MOEZ376FKNPS"
 zone_name = "maidevops.fun"
 
 eks = {
-
+  main = {
+    eks_version = 1.33
+    subnet_ids  = ["subnet-0a10be74295112b3e", "subnet-0ae77905116bf41c6"]
+    node_groups = {
+      one = {
+        min_nodes = 1
+        max_nodes = 10
+      }
+    }
+  }
 }
