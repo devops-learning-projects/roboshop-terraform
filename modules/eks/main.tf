@@ -16,8 +16,8 @@ resource "aws_eks_node_group" "main" {
 # to demonstrate schedular we need multiple nodes. default: 1, 2, 1
   scaling_config {
     desired_size = each.value["min_nodes"]
-    max_size     = each.value["min_nodes"]
-    min_size     = each.value["max_nodes"]
+    min_size     = each.value["min_nodes"]
+    max_size     = each.value["max_nodes"]
   }
 
   update_config {
