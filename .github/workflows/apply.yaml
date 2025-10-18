@@ -1,0 +1,10 @@
+name: Apply
+on:
+  workflow_dispatch:
+jobs:
+  Apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Terraform Apply
+        run: make dev-apply
