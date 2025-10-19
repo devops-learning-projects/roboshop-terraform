@@ -1,0 +1,12 @@
+name: Destroy
+on:
+  workflow_dispatch:
+jobs:
+  Apply:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Terraform Destroy
+        run: make dev-destroy token=${vault_token}
+        env:
+          vault_token: ${{ secrets.VAULT_TOKEN }}
