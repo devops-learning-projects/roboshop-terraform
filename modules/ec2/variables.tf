@@ -12,3 +12,7 @@ variable "disk_size" {
 variable "is_tool" {
   default = false
 }
+
+variable "iam_policy" {
+  default = []
+}
