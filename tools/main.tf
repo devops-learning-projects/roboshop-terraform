@@ -9,6 +9,7 @@ module "tools" {
   token         = var.token
   is_tool       = true
   iam_policy    = try(each.value["iam_policy"], [])
+  disk_size     = try(each.value["disk_size"], 20)
 }
 
 resource "aws_ecr_repository" "main" {

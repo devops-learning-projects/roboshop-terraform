@@ -14,6 +14,7 @@ variable "tools" {
     github-runner = {
       instance_type = "t3.small"
       iam_policy    = ["*"]
+      disk_size     = 30
     }
   }
 }
