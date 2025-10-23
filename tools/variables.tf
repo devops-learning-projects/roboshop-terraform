@@ -19,3 +19,14 @@ variable "tools" {
 }
 
 variable "token" {}
+
+variable "ecr" {
+  default = {
+    frontend  = "IMMUTABLE"
+    cart      = "IMMUTABLE"
+    catalogue = "IMMUTABLE"
+    user      = "IMMUTABLE"
+    shipping  = "IMMUTABLE"
+    payment   = "IMMUTABLE"
+  }
+}
