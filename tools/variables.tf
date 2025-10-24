@@ -29,5 +29,6 @@ variable "ecr" {
     user      = "IMMUTABLE"
     shipping  = "IMMUTABLE"
     payment   = "IMMUTABLE"
+    runner    = "MUTABLE"
   }
 }
