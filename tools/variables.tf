@@ -11,11 +11,11 @@ variable "tools" {
     vault = {
       instance_type = "t3.small"
     }
-    github-runner = {
-      instance_type = "t3.small"
-      iam_policy    = ["*"]
-      disk_size     = 50
-    }
+    # github-runner = {
+    #   instance_type = "t3.small"
+    #   iam_policy    = ["*"]
+    #   disk_size     = 50
+    # }
   }
 }
 
