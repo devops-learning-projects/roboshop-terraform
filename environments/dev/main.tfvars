@@ -71,7 +71,7 @@ eks = {
     subnet_ids  = ["subnet-0a10be74295112b3e", "subnet-0ae77905116bf41c6"]
     node_groups = {
       one = {
-        min_nodes = 1
+        min_nodes = 2
         max_nodes = 10
       }
     }
