@@ -15,3 +15,13 @@ resource "helm_release" "nginx_ingress" {
   create_namespace = true
   values           = [file("${path.module}/helm-values/ingress.yml")]
 }
+
+# download external dns to automate dns creation
+resource "helm_release" "external-dns" {
+  depends_on       = [null_resource.kubeconfig]
+  name             = "external-dns"
+  repository       = "https://kubernetes-sigs.github.io/external-dns"
+  chart            = "external-dns"
+  namespace        = "tools"
+  create_namespace = true
+}
