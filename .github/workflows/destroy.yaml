@@ -2,7 +2,7 @@ name: Destroy
 on:
   workflow_dispatch:
 jobs:
-  Apply:
+  Destroy:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
