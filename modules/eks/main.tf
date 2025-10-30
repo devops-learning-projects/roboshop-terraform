@@ -30,14 +30,10 @@ resource "aws_eks_node_group" "main" {
 
 #  Add Addon for network policy
 resource "aws_eks_addon" "main" {
+  for_each = var.addons
   cluster_name = aws_eks_cluster.main.name
-  addon_name   = "vpc-cni"
-  configuration_values = jsonencode({
-      "enableNetworkPolicy": "true",
-      "nodeAgent": {
-        "enablePolicyEventLogs": "true"
-      }
-  })
+  addon_name   = each.key
+  configuration_values = each.value["config"]
 }
 
 # cluster access entry for workstation
