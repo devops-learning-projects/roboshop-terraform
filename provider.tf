@@ -2,6 +2,12 @@ provider "aws" {}
 
 terraform {
   backend "s3" {}
+  required_providers {
+    helm = {
+      source  = "hashicorp/helm"
+      version = "2.17.0"
+    }
+  }
 }
 
 provider "vault" {
@@ -10,7 +16,7 @@ provider "vault" {
 }
 
 provider "helm" {
-  kubernetes = {
+  kubernetes {
     config_path = "~/.kube/config"
   }
 }

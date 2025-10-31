@@ -40,10 +40,8 @@ resource "helm_release" "argocd" {
   values           = [file("${path.module}/helm-values/argo.yml")]
 
   # set ingress
-  set = [
-    {
+  set {
       name  = "global.domain"
       value = "argocd-${var.env}.maidevops.fun"
     }
-  ]
 }
