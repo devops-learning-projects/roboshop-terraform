@@ -109,6 +109,7 @@ resource "aws_iam_role" "external-dns" {
   }
 }
 
+# the above ami role attached to the pod
 # aws_eks_pod_identity_association
 resource "aws_eks_pod_identity_association" "external-dns" {
   cluster_name    = aws_eks_cluster.main.name
