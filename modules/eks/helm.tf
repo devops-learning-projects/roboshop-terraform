@@ -32,9 +32,9 @@ resource "helm_release" "external-dns" {
 # Argo CD helm is used to install and manage Argo CD
 resource "helm_release" "argocd" {
   depends_on       = [null_resource.kubeconfig, helm_release.nginx_ingress]
-  name             = "agro-cd"
+  name             = "argo-cd"
   repository       = "https://argoproj.github.io/argo-helm"
-  chart            = "agro-cd"
+  chart            = "argo-cd"
   namespace        = "tools"
   create_namespace = true
   # set ingress
