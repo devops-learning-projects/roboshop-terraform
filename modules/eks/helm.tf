@@ -30,11 +30,22 @@ resource "helm_release" "external-dns" {
 }
 
 # Argo CD helm is used to install and manage Argo CD
-resource "helm_release" "agrocd" {
+resource "helm_release" "argocd" {
   depends_on       = [null_resource.kubeconfig, helm_release.nginx_ingress]
   name             = "agro-cd"
   repository       = "https://argoproj.github.io/argo-helm"
   chart            = "agro-cd"
   namespace        = "tools"
   create_namespace = true
+  # set ingress
+  set = [
+    {
+      name  = "global.domain"
+      value = "argocd-${var.env}.maidevops.fun"
+    },
+    {
+      name  = "server.ingress.enabled"
+      value = "true"
+    }
+  ]
 }
