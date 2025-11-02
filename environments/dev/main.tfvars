@@ -60,7 +60,7 @@ databases = {
   }
 }
 
-env       = "dev1"
+env       = "dev"
 ami       = "ami-02cd238b02cf23cc1"
 zone_id   = "Z00952302MOEZ376FKNPS"
 zone_name = "maidevops.fun"
