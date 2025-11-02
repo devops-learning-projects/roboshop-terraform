@@ -1,13 +1,31 @@
 # added kubeconfig
+# resource "null_resource" "kubeconfig" {
+#   depends_on = [aws_eks_node_group.main]
+#   triggers = {
+#     always = timestamp()
+#   }
+#   provisioner "local-exec" {
+#     command = "aws eks update-kubeconfig --name ${var.env}"
+#   }
+# }
 resource "null_resource" "kubeconfig" {
   depends_on = [aws_eks_node_group.main]
   triggers = {
     always = timestamp()
   }
+
   provisioner "local-exec" {
-    command = "aws eks update-kubeconfig --name ${var.env}"
+    command = <<EOT
+    aws eks update-kubeconfig --name ${var.env}
+    for i in {1..30}; do
+      kubectl get nodes && break
+      echo "Waiting for cluster nodes..."
+      sleep 10
+    done
+    EOT
   }
 }
+
 
 resource "helm_release" "nginx_ingress" {
   depends_on       = [null_resource.kubeconfig]
