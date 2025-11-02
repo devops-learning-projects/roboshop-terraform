@@ -2,3 +2,7 @@ server:
   ingress:
     enabled: true
     ingressClassName: nginx
+
+configs:
+  params:
+    server.insecure: true
