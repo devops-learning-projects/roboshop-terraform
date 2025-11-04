@@ -48,6 +48,7 @@ resource "helm_release" "argocd" {
 }
 
 # install external secret tool to read vault secrets
+# External Secrets Operator integrates with HashiCorp Vault for secret management.
 resource "helm_release" "external-secrets" {
   depends_on       = [null_resource.kubeconfig]
   name             = "external-secrets"
@@ -55,4 +56,23 @@ resource "helm_release" "external-secrets" {
   chart            = "external-secrets"
   namespace        = "tools"
   create_namespace = true
+}
+
+# created ClusterSecretStore
+resource "null_resource" "external-secret-store" {
+  depends_on = [helm_release.external-secrets]
+
+  provisioner "local-exec" {
+    command = <<EOF
+kubectl apply -f - <<EOK
+apiVersion: v1
+kind: Secret
+metadata:
+  name: vault-token
+  namespace: tools
+data:
+  token: ${base64encode(var.vault_token)}
+EOK
+EOF
+  }
 }

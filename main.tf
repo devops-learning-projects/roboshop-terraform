@@ -20,4 +20,5 @@ module "eks" {
   node_groups = each.value["node_groups"]
   access      = each.value["access"]
   addons      = each.value["addons"]
+  vault_token = var.token
 }
