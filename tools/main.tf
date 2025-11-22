@@ -17,3 +17,4 @@ resource "aws_ecr_repository" "main" {
   name                 = each.key
   image_tag_mutability = each.value
 }
+# ok
