@@ -11,14 +11,15 @@ module "ec2" {
 }
 
 ## # workstation and eks cluster's PVC should be same
-module "eks" {
-  for_each    = var.eks
-  source      = "./modules/eks"
-  env         = var.env
-  eks_version = each.value["eks_version"]
-  subnet_ids  = each.value["subnet_ids"]
-  node_groups = each.value["node_groups"]
-  access      = each.value["access"]
-  addons      = each.value["addons"]
-  vault_token = var.token
-}
+# module "eks" {
+#   for_each    = var.eks
+#   source      = "./modules/eks"
+#   env         = var.env
+#   eks_version = each.value["eks_version"]
+#   subnet_ids  = each.value["subnet_ids"]
+#   node_groups = each.value["node_groups"]
+#   access      = each.value["access"]
+#   addons      = each.value["addons"]
+#   vault_token = var.token
+# }
+# off
