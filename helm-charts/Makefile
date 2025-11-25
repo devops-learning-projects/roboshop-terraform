@@ -11,9 +11,11 @@ dev-plan: ## Plan changes for dev
 	terraform plan -var-file=./environments/dev/main.tfvars
 
 dev-apply: dev-init ## Apply changes to dev
+	aws eks update-kubeconfig --name dev || true
 	terraform apply -var-file=./environments/dev/main.tfvars -auto-approve -var token=$(token)
 
 dev-destroy: dev-init ## Destroy dev environment
+	aws eks update-kubeconfig --name dev || true
 	terraform destroy -var-file=./environments/dev/main.tfvars -auto-approve -var token=$(token)
 
 prod-init: ## Initialize prod environment
