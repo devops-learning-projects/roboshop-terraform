@@ -93,3 +93,13 @@ EOK
 EOF
   }
 }
+
+# install prometheus and grafana
+resource "helm_release" "prometheus" {
+  depends_on       = [null_resource.kubeconfig, helm_release.nginx_ingress]
+  name             = "kube-prometheus-stack"
+  repository       = "oci://ghcr.io/prometheus-community/charts"
+  chart            = "kube-prometheus-stack"
+  namespace        = "tools"
+  create_namespace = true
+}
