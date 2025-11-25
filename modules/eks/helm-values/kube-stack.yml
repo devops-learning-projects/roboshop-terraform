@@ -1,0 +1,5 @@
+# give prometheus access from outside
+prometheus:
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
