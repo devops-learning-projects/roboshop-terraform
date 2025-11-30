@@ -10,6 +10,7 @@ resource "aws_instance" "instance" {
 
   tags = {
     Name = local.tagName
+    monitor = "true"
   }
 }
 
