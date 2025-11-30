@@ -12,7 +12,7 @@ prometheus:
             port: 9100
             filters:
               - name: "tag:monitor"
-              - values: [ "true" , "yes" ]
+                values: ["true", "yes"]
         relabel_configs:
           - source_labels: [__meta_ec2_instance_id]
             target_label: instance_id
