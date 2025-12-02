@@ -16,6 +16,8 @@ resource "aws_eks_node_group" "main" {
   node_group_name = each.key
   node_role_arn   = aws_iam_role.node.arn
   subnet_ids      = var.subnet_ids
+  capacity_type   = each.value["capacity_type"]
+  instance_types  = each.value["instance_types"]
 # to demonstrate schedular we need multiple nodes. default: 1, 2, 1
   scaling_config {
     desired_size = each.value["min_nodes"]

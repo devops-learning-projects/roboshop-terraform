@@ -71,8 +71,16 @@ eks = {
     subnet_ids  = ["subnet-0a10be74295112b3e", "subnet-0ae77905116bf41c6"]
     node_groups = {
       one = {
-        min_nodes = 2
-        max_nodes = 10
+        min_nodes     = 1
+        max_nodes     = 10
+        instance_tupe = ["t3.xlarge"]
+        capacity_type = "SPOT"
+      }
+      one = {
+        min_nodes     = 2
+        max_nodes     = 10
+        instance_tupe = ["t3.medium"]
+        capacity_type = "ON_DEMAND"
       }
     }
     # cluster access entry for workstation
