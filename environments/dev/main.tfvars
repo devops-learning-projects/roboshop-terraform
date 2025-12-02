@@ -73,13 +73,13 @@ eks = {
       one = {
         min_nodes     = 1
         max_nodes     = 10
-        instance_type = ["t3.xlarge"]
+        instance_types = ["t3.xlarge"]
         capacity_type = "SPOT"
       }
       one = {
         min_nodes     = 2
         max_nodes     = 10
-        instance_type = ["t3.medium"]
+        instance_types = ["t3.medium"]
         capacity_type = "ON_DEMAND"
       }
     }
