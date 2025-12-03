@@ -10,6 +10,7 @@ prometheus:
         static_configs:
           - targets: ["ingress-nginx-controller-metrics:10254"]
       - job_name: ec2-nodes
+        scrape_interval: 10s
         ec2_sd_configs:
           - region: us-east-1
             port: 9100
