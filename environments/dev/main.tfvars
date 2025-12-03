@@ -76,12 +76,12 @@ eks = {
         instance_types = ["t3.xlarge"]
         capacity_type = "SPOT"
       }
-      one = {
-        min_nodes     = 2
-        max_nodes     = 10
-        instance_types = ["t3.medium"]
-        capacity_type = "ON_DEMAND"
-      }
+      # one = {
+      #   min_nodes     = 2
+      #   max_nodes     = 10
+      #   instance_types = ["t3.medium"]
+      #   capacity_type = "ON_DEMAND"
+      # }
     }
     # cluster access entry for workstation
     access = {
