@@ -10,6 +10,9 @@ module "tools" {
   is_tool       = true
   iam_policy    = try(each.value["iam_policy"], [])
   disk_size     = try(each.value["disk_size"], 20)
+  spot          = try(each.value["spot"], false)
+  monitor       = try(each.value["monitor"], false)
+  # spot_max_price = try(each.value["monitor"], 0)
 }
 
 resource "aws_ecr_repository" "main" {
@@ -17,4 +20,3 @@ resource "aws_ecr_repository" "main" {
   name                 = each.key
   image_tag_mutability = each.value
 }
-# ok

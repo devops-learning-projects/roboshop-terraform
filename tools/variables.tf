@@ -16,6 +16,11 @@ variable "tools" {
       iam_policy    = ["*"]
       disk_size     = 50
     }
+    elk = {
+      instance_type  = "m8i.xlarge"
+      spot           = true
+      # spot_max_price = 0.0930
+    }
   }
 }
 
