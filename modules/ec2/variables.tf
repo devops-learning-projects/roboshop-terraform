@@ -28,3 +28,7 @@ variable "monitor" {
 variable "spot_max_price" {
   default = 0
 }
+
+variable "subnet" {
+  default = null
+}

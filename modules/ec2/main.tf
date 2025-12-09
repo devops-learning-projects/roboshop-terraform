@@ -21,6 +21,7 @@ resource "aws_instance" "spot_instance" {
   instance_type          = var.instance_type
   vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   iam_instance_profile   = aws_iam_instance_profile.main.name
+  subnet_id              = var.subnet
 
   root_block_device {
     volume_size = var.disk_size
