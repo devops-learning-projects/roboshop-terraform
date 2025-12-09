@@ -20,7 +20,7 @@ variable "tools" {
       instance_type  = "m8i.xlarge"
       spot           = true
       spot_max_price = 0.0930
-      subnet         = "subnet-0a87311c8c5ada1b1"
+      subnet         = "subnet-0a10be74295112b3e"
     }
   }
 }
