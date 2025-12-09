@@ -32,6 +32,7 @@ resource "aws_instance" "spot_instance" {
     spot_options {
       max_price = var.spot_max_price
       instance_interruption_behavior = "stop"
+      spot_instance_type = "persistent"
     }
   }
 
