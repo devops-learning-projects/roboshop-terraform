@@ -8,9 +8,9 @@ variable "ami" {
 
 variable "tools" {
   default = {
-    vault = {
-      instance_type = "t3.small"
-    }
+    # vault = {
+    #   instance_type = "t3.small"
+    # }
     github-runner = {
       instance_type = "t3.small"
       iam_policy    = ["*"]
