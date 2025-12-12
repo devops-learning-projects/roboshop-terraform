@@ -30,7 +30,7 @@ resource "aws_instance" "spot_instance" {
   instance_market_options {
     market_type = "spot"
     spot_options {
-      max_price = var.spot_max_price
+      # max_price = var.spot_max_price
       instance_interruption_behavior = "stop"
       spot_instance_type = "persistent"
     }
