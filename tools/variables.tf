@@ -17,10 +17,8 @@ variable "tools" {
       disk_size     = 50
     }
     elk = {
-      instance_type  = "m8i.xlarge"
+      instance_type  = "t3.xlarge"
       spot           = true
-      spot_max_price = 0.0900
-      subnet         = "subnet-0a10be74295112b3e"
     }
   }
 }
