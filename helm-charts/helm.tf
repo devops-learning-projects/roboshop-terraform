@@ -111,7 +111,7 @@ resource "helm_release" "prometheus" {
 
 # Cluster Autoscaler
 resource "helm_release" "cluster-autoscaler" {
-  depends_on       = [null_resource.kubeconfig]
+  depends_on       = [null_resource.kubeconfig, aws_eks_pod_identity_association.cluster-autoscaler]
   name             = "cluster-autoscaler"
   repository       = "https://kubernetes.github.io/autoscaler"
   chart            = "cluster-autoscaler"
