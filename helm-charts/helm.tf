@@ -29,6 +29,7 @@ resource "helm_release" "external-dns" {
   create_namespace = true
 }
 
+#
 # Argo CD helm is used to install and manage Argo CD
 resource "helm_release" "argocd" {
   depends_on       = [null_resource.kubeconfig, helm_release.nginx_ingress]
