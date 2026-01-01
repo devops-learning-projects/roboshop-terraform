@@ -105,11 +105,22 @@ resource "helm_release" "prometheus" {
   chart            = "kube-prometheus-stack"
   namespace        = "tools"
   create_namespace = true
-  values           = [file("${path.module}/helm-values/kube-stack.yml")]
+  # values           = [file("${path.module}/helm-values/kube-stack.yml")]
+  values           = [
+    templatefile("${path.module}/helm-values/kube-stack.yml", {
+      smtp_user = data.vault_generic_secret.ses.data["smtp_user"]
+      smtp_pass = data.vault_generic_secret.ses.data["smtp_pass"]
+    })
+  ]
 
   set_list {
     name  = "prometheus.ingress.hosts"
     value = ["prometheus-${var.env}.maidevops.fun"]
+  }
+
+  set_list {
+    name  = "alertmanager.ingress.hosts"
+    value = ["alertmanager-${var.env}.maidevops.fun"]
   }
 }
 
