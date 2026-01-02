@@ -5,7 +5,7 @@ module "vpc" {
   env            = var.env
   subnets        = each.value["subnets"]
   vpc_cidr_block = each.value["vpc_cidr_block"]
-
+  vpc_peers      = each.value["vpc_peers"]
 }
 
 

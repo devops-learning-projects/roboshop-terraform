@@ -126,6 +126,11 @@ vpc = {
         availability_zone = "us-east-1b"
       }
     }
-
+    vpc_peers = {
+      default = {
+        vpc_id      = "vpc-01900a496fb13e07c"
+        vpc_cidr    = "172.31.0.0/16"
+      }
+    }
   }
 }
