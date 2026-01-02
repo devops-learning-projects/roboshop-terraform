@@ -130,6 +130,7 @@ vpc = {
       default = {
         vpc_id      = "vpc-01900a496fb13e07c"
         vpc_cidr    = "172.31.0.0/16"
+        route_table = "rtb-0c3c5b0965e99f16c"
       }
     }
   }

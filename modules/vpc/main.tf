@@ -31,3 +31,17 @@ resource "aws_vpc_peering_connection" "main" {
 
 }
 
+# aws route table connection
+resource "aws_route" "main-to-other" {
+  for_each                  = var.vpc_peers
+  route_table_id            = aws_vpc.main.default_route_table_id
+  destination_cidr_block    = each.value["vpc_cidr"]
+  vpc_peering_connection_id = aws_vpc_peering_connection.main[each.key].id
+}
+
+resource "aws_route" "other-to-main" {
+  for_each                  = var.vpc_peers
+  route_table_id            = each.value["route_table"]
+  destination_cidr_block    = var.vpc_cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.main[each.key].id
+}
