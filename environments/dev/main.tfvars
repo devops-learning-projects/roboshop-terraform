@@ -118,12 +118,16 @@ vpc = {
     vpc_cidr_block = "10.10.0.0/16"
     subnets = {
       az1 = {
-        cidr_block        = "10.10.0.0/17"
+        cidr_block        = "10.10.10.0/24"
         availability_zone = "us-east-1a"
       }
       az2 = {
-        cidr_block        = "10.10.128.0/17"
+        cidr_block        = "10.10.11.0/24"
         availability_zone = "us-east-1b"
+      }
+      gateway = {
+        cidr_block        = "10.10.0.0/24"
+        availability_zone = "us-east-1a"
       }
     }
     vpc_peers = {

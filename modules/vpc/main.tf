@@ -45,3 +45,27 @@ resource "aws_route" "other-to-main" {
   destination_cidr_block    = var.vpc_cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection.main[each.key].id
 }
+
+# aws internet gateway to ensure internet for new instances
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = var.env
+  }
+}
+
+# Elastic IP
+resource "aws_eip" "ngw" {
+  domain   = "vpc"
+}
+
+# Nat gateway to distribute the internet
+resource "aws_nat_gateway" "ngw" {
+  allocation_id = aws_eip.ngw.id
+  subnet_id     = aws_subnet.main["gateway"].id
+
+  tags = {
+    Name = var.env
+  }
+}
