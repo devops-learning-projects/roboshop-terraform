@@ -33,3 +33,7 @@ module "vpc" {
 #   addons      = each.value["addons"]
 #   vault_token = var.token
 # }
+
+output "main" {
+  value = module.vpc
+}

@@ -112,29 +112,43 @@ eks = {
   }
 }
 
-# Create desire vpc
+# Create desire vpc and subnets
 vpc = {
   main = {
     vpc_cidr_block = "10.10.0.0/16"
     subnets = {
-      az1 = {
+      app-az1 = {
         cidr_block        = "10.10.10.0/24"
         availability_zone = "us-east-1a"
+        ngw               = true
       }
-      az2 = {
+      app-az2 = {
         cidr_block        = "10.10.11.0/24"
         availability_zone = "us-east-1b"
+        ngw               = true
+      }
+      db-az1 = {
+        cidr_block        = "10.10.12.0/24"
+        availability_zone = "us-east-1a"
+        ngw               = true
+      }
+      db-az2 = {
+        cidr_block        = "10.10.13.0/24"
+        availability_zone = "us-east-1b"
+        ngw               = true
       }
       gateway = {
         cidr_block        = "10.10.0.0/24"
         availability_zone = "us-east-1a"
+        igw               = true
       }
     }
     vpc_peers = {
-      default = {
-        vpc_id      = "vpc-01900a496fb13e07c"
+      "vpc-06ac3dd6a7a23a33a" = {
+        name        = "default"
+        vpc_id      = "vpc-06ac3dd6a7a23a33a"
         vpc_cidr    = "172.31.0.0/16"
-        route_table = "rtb-0c3c5b0965e99f16c"
+        route_table = "rtb-00e8a453486ad1e90"
       }
     }
   }
