@@ -32,3 +32,7 @@ variable "spot_max_price" {
 variable "subnet" {
   default = null
 }
+
+variable "vpc_id" {}
+
+variable "bastion_nodes" {}
