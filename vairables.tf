@@ -7,3 +7,4 @@ variable "zone_name" {}
 variable "token" {}
 variable "eks" {}
 variable "vpc" {}
+variable "bastion_nodes" {}
