@@ -36,3 +36,5 @@ variable "subnet" {
 variable "vpc_id" {}
 
 variable "bastion_nodes" {}
+variable "app_port" {}
+variable "app_cidrs" {}

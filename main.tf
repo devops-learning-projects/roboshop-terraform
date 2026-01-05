@@ -22,6 +22,8 @@ module "ec2" {
   subnet        = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_ref"], null), "id", null)
   vpc_id        = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
   bastion_nodes = var.bastion_nodes
+  app_cidrs     = each.value["app_cidrs"]
+  app_port      = each.value["app_port"]
 }
 #
 # # # workstation and eks cluster's PVC should be same
