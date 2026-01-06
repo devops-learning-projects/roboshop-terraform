@@ -25,19 +25,19 @@ module "ec2" {
   app_cidrs     = each.value["app_cidrs"]
   app_port      = each.value["app_port"]
 }
-#
-# # # workstation and eks cluster's PVC should be same
-# module "eks" {
-#   for_each    = var.eks
-#   source      = "./modules/eks"
-#   env         = var.env
-#   eks_version = each.value["eks_version"]
-#   subnet_ids  = each.value["subnet_ids"]
-#   node_groups = each.value["node_groups"]
-#   access      = each.value["access"]
-#   addons      = each.value["addons"]
-#   vault_token = var.token
-# }
+
+# # workstation and eks cluster's PVC should be same
+module "eks" {
+  for_each    = var.eks
+  source      = "./modules/eks"
+  env         = var.env
+  eks_version = each.value["eks_version"]
+  subnet_ids  = [lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), "app-az1", null), "id", null),lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), "app-az2", null), "id", null)]
+  node_groups = each.value["node_groups"]
+  access      = each.value["access"]
+  addons      = each.value["addons"]
+  vault_token = var.token
+}
 
 output "main" {
   value = module.vpc
