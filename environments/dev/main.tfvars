@@ -185,5 +185,6 @@ vpc = {
     }
   }
 }
+# workstation and github runner ip
+bastion_nodes = ["172.31.32.181/32", "172.31.42.152/32"]
 
-bastion_nodes = ["172.31.32.181/32"]
