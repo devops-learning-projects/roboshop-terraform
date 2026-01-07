@@ -19,7 +19,12 @@ resource "helm_release" "nginx_ingress" {
   chart            = "ingress-nginx"
   namespace        = "tools"
   create_namespace = true
-  values           = [file("${path.module}/helm-values/ingress.yml")]
+  # values           = [file("${path.module}/helm-values/ingress.yml")]
+  values = [templatefile("${path.module}/helm-values/ingress.yml",
+    {
+      lb_subnets      = join(",", data.aws_subnets.lb-az.ids)
+    }
+  )]
 }
 
 # download external dns to automate dns creation
