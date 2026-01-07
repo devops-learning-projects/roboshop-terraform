@@ -154,6 +154,26 @@ vpc = {
         availability_zone = "us-east-1a"
         igw               = true
       }
+      lb-az1 = {
+        cidr_block        = "10.10.14.0/24"
+        availability_zone = "us-east-1a"
+        ngw               = true
+      }
+      lb-az2 = {
+        cidr_block        = "10.10.15.0/24"
+        availability_zone = "us-east-1b"
+        ngw               = true
+      }
+      public-az1 = {
+        cidr_block        = "10.10.16.0/24"
+        availability_zone = "us-east-1a"
+        igw               = true
+      }
+      public-az2 = {
+        cidr_block        = "10.10.17.0/24"
+        availability_zone = "us-east-1b"
+        igw               = true
+      }
     }
     vpc_peers = {
       "vpc-01900a496fb13e07c" = {
