@@ -36,4 +36,10 @@ locals {
     if try(subnet.ngw, false) == true
   }
 
+  igw_subnets = {
+    for name, subnet in var.subnets :
+    name => subnet
+    if try(subnet.igw, false) == true
+  }
+
 }
