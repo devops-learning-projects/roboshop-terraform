@@ -25,7 +25,7 @@ prometheus:
           - source_labels: [__meta_ec2_tag_Name]
             target_label: ec2_name
 
-
+# get alert to email
 alertmanager:
   ingress:
     enabled: true
@@ -78,3 +78,27 @@ alertmanager:
     templates:
       - '/etc/alertmanager/config/*.tmpl'
 
+
+# Defined when I want to get alert ( Pod CrashLoopBackOff & Container High Cpu Usage)
+additionalPrometheusRulesMap:
+  rule-name:
+    groups:
+      - name: RoboShop Project
+        rules:
+          - alert: Pod CrashLoopBackOff
+            expr:  max_over_time(kube_pod_container_status_waiting_reason{job="kube-state-metrics",namespace=~".*",reason="CrashLoopBackOff"}[5m]) >= 1
+            for: 1m
+            labels:
+              severity: high
+              app: "infra"
+            annotations:
+              summary: Pod CrashLoopBackOff
+
+          - alert: Container High Cpu Usage
+            expr:  (rate(container_cpu_usage_seconds_total[1m]) * 100) > 1
+            for: 1m
+            labels:
+              severity: high
+              app: "infra"
+            annotations:
+              summary: Container High Cpu Usage
