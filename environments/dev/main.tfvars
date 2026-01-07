@@ -157,12 +157,12 @@ vpc = {
       lb-az1 = {
         cidr_block        = "10.10.14.0/24"
         availability_zone = "us-east-1a"
-        ngw               = true
+        igw               = true
       }
       lb-az2 = {
         cidr_block        = "10.10.15.0/24"
         availability_zone = "us-east-1b"
-        ngw               = true
+        igw               = true
       }
       public-az1 = {
         cidr_block        = "10.10.16.0/24"
