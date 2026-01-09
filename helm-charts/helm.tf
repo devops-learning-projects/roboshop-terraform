@@ -163,3 +163,26 @@ resource "helm_release" "filebeat" {
   ]
 
 }
+
+# cert-manager and let's encrypt certificate
+resource "helm_release" "cert-manager" {
+  depends_on       = [null_resource.kubeconfig]
+  name             = "cert-manager"
+  repository       = "https://charts.jetstack.io"
+  chart            = "cert-manager"
+  namespace        = "tools"
+  create_namespace = true
+
+  set {
+    name  = "crds.enabled"
+    value = "true"
+  }
+}
+
+resource "null_resource" "cert-manager-cluster-issuer" {
+  depends_on = [null_resource.kubeconfig, helm_release.cert-manager]
+
+  provisioner "local-exec" {
+    command = "kubectl apply -f ${path.module}/helm-values/cluster-issuer.yml"
+  }
+}
