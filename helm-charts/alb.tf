@@ -45,3 +45,20 @@ resource "aws_lb" "main" {
   }
 }
 
+# Target group for public lb
+resource "aws_lb_target_group" "tg" {
+  name        = "public-tg"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = data.aws_vpc.main.id
+  target_type = "ip"
+}
+
+resource "aws_lb_target_group_attachment" "tg-attach"{
+  count            = length(local.internal_lb_ips)
+  target_group_arn = aws_lb_target_group.tg.arn
+  target_id        = local.internal_lb_ips[count.index]
+  port             = 80
+}
+
+

@@ -23,6 +23,7 @@ resource "helm_release" "nginx_ingress" {
   values = [templatefile("${path.module}/helm-values/ingress.yml",
     {
       lb_subnets      = join(",", data.aws_subnets.lb-az.ids)
+      internal_lb_ips = var.internal_lb_ips
     }
   )]
 }
