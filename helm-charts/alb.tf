@@ -61,4 +61,18 @@ resource "aws_lb_target_group_attachment" "tg-attach"{
   port             = 80
 }
 
+# listener for public lb
+resource "aws_lb_listener" "https" {
+  load_balancer_arn = aws_lb.main.arn
+  port              = "443"
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = "arn:aws:acm:us-east-1:804756348441:certificate/3ed301ab-eb02-4306-b300-0b19c78def23"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.tg.arn
+  }
+}
+
 
