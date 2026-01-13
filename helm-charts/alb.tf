@@ -52,12 +52,16 @@ resource "aws_lb_target_group" "tg" {
   protocol    = "HTTP"
   vpc_id      = data.aws_vpc.main.id
   target_type = "ip"
+  health_check {
+    matcher = "404"
+  }
 }
 
 resource "aws_lb_target_group_attachment" "tg-attach"{
-  count            = length(local.internal_lb_ips)
+  depends_on       = [helm_release.nginx_ingress]
+  count            = length(data.aws_network_interface.nlb_ips[*].private_ip)
   target_group_arn = aws_lb_target_group.tg.arn
-  target_id        = local.internal_lb_ips[count.index]
+  target_id        = data.aws_network_interface.nlb_ips[count.index].private_ip
   port             = 80
 }
 
