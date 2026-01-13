@@ -28,15 +28,16 @@ resource "helm_release" "nginx_ingress" {
   )]
 }
 
+# We moved this to ALB, Hence we are going to create DNS to public load balancer.
 # download external dns to automate dns creation
-resource "helm_release" "external-dns" {
-  depends_on       = [null_resource.kubeconfig]
-  name             = "external-dns"
-  repository       = "https://kubernetes-sigs.github.io/external-dns"
-  chart            = "external-dns"
-  namespace        = "tools"
-  create_namespace = true
-}
+# resource "helm_release" "external-dns" {
+#   depends_on       = [null_resource.kubeconfig]
+#   name             = "external-dns"
+#   repository       = "https://kubernetes-sigs.github.io/external-dns"
+#   chart            = "external-dns"
+#   namespace        = "tools"
+#   create_namespace = true
+# }
 
 #
 # Argo CD helm is used to install and manage Argo CD
