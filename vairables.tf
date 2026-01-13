@@ -8,3 +8,4 @@ variable "token" {}
 variable "eks" {}
 variable "vpc" {}
 variable "bastion_nodes" {}
+variable "kms_arn_id" {}
