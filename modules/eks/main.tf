@@ -10,6 +10,22 @@ resource "aws_eks_cluster" "main" {
   }
 }
 
+resource "aws_launch_template" "main" {
+  for_each = var.node_groups
+  name     = each.key
+
+  block_device_mappings {
+    device_name = "/dev/xvda"
+
+    ebs {
+      volume_size = 20
+      encrypted   = true
+      kms_key_id  = var.kms_arn_id
+    }
+  }
+
+}
+
 resource "aws_eks_node_group" "main" {
   for_each        = var.node_groups
   cluster_name    = aws_eks_cluster.main.name
@@ -18,6 +34,11 @@ resource "aws_eks_node_group" "main" {
   subnet_ids      = var.subnet_ids
   capacity_type   = each.value["capacity_type"]
   instance_types  = each.value["instance_types"]
+
+  launch_template {
+    name    = aws_launch_template.main[each.key].name
+    version = "$Latest"
+  }
 # to demonstrate schedular we need multiple nodes. default: 1, 2, 1
   scaling_config {
     desired_size = each.value["min_nodes"]
