@@ -73,7 +73,7 @@ databases = {
 }
 
 env        = "dev"
-ami        = "ami-02cd238b02cf23cc1"
+ami        = "ami-058671d038334ec1e"
 zone_id    = "Z00952302MOEZ376FKNPS"
 zone_name  = "maidevops.fun"
 kms_arn_id = "arn:aws:kms:us-east-1:804756348441:key/a1229335-502b-4684-a07a-27a0426a28ad"
